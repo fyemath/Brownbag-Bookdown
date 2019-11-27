@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>How to Self-Publish a Book Online Using Bookdown</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Fei Ye    Department of Mathematics and Computer Science" />
+    <link href="BrownBag-Bookdown_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="BrownBag-Bookdown_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { 
+            preferredFont: "STIX"
+            }
+      });
+    </script>
+    <link rel="stylesheet" href="Assets\css\custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# How to Self-Publish a Book Online Using Bookdown
+## A Brief Introduction<br/><br/>
+### Fei Ye <br/><br/> Department of Mathematics and Computer Science<br/><br/>
+### November, 2019
+
+---
+
+
+
+
+&lt;style type="text/css"&gt;
+.remark-slide table, .remark-slide table thead th {
+  border-top: 0px;
+  border-bottom: 0px;
+  padding:0px;
+}
+.remark-slide table thead th[style] {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.remark-slide thead tr th, .remark-slide tr:nth-child(2n){
+  background: LightCyan;
+}
+
+table thead tr:empty{
+  visibility: hidden;
+}
+
+strong, b {
+    color: DarkBlue;
+}
+
+.footnote {
+    font-size: 80%;
+    bottom: 0.5em;
+    color: #c8e10b;
+}
+
+.remark-slide-content {
+    padding: 1em 2em 1em 2em;
+}
+
+.DataTable tr:nth-child(2n){
+    background-color: white !important;
+}
+
+
+.latex-macros{
+  display: none;
+}
+&lt;/style&gt;
+
+&lt;div class="latex-macros"&gt;
+
+`$$\require{color}$$`
+`$$\definecolor{purple}{RGB}{226, 15, 233}$$`
+`$$\definecolor{grey}{RGB}{177, 159, 149}$$`
+
+&lt;/div&gt;
+
+
+## Outline
+
+- ### Examples
+
+- ### Intall Tools
+
+- ### Write book in R markdown
+
+- ### Build book using the bookdown package
+
+- ### Publish through GitHub
+
+---
+class: middle center
+
+# Examples
+
+---
+
+## [Bookdown Book Examples](https://bookdown.org/)
+
+.center[
+  .pull-left[
+    [
+      ![:resize  , 80%, 80%](Figs/Example-Notes-Adv-Calc.png)
+    ](https://desautm.github.io/calcul3/geogebra-fctvar.html)
+  ]
+  .pull-right[
+    [
+      ![:resize  , 80%, 80%](Figs/Example-Odds-and-Ends.png)
+    ](https://jonathanweisberg.org/vip/)
+  ]
+]
+
+.center[
+  .pull-left[
+    [
+      ![:resize  , 80%, 80%](Figs/Example-Intro-to-Eco-with-R.png)
+    ](https://www.econometrics-with-r.org/)
+  ]
+  .pull-right[
+    [
+      ![:resize  , 80%, 80%](Figs/Example-Ex4Calc.png)
+    ](https://ex4calc.netlify.com/applications-derivatives.html#optimization-problems)
+  ]
+]
+
+---
+class: middle center
+
+# Tools
+
+---
+
+## Reference Books and Tools
+
+- [Pandoc: a universal document converter](https://pandoc.org/getting-started.html)
+
+- [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/)
+
+- [Rstudio](https://rstudio.com/products/rstudio/download/)
+
+- The bookdown package and other related packages
+
+- [GitHub Desktop](https://desktop.github.com/)
+
+---
+
+## Install `R`, `Rstudio` and Packages
+
+- Install `R` and `Rstudio`
+
+  Go to [R project website](https://cran.r-project.org/) and [Rstudio website](https://rstudio.com/products/rstudio/download/) download the latest version of R and Rstudio Desktop.
+
+  ***Tip:*** It's better to install R to a different location instead of the default location, such as `C:\Program Files\R` on windows.
+
+- Install `R` Packages
+
+  Type in the command `install.packages("bookdown")` in the Rstudio console and hit enter, or go to `Tools-&gt;Install Packages` to find and install a package.
+
+  ***Tips:*** Don't install packages to the default local repository. Instead, create a `.Renviron` file to your home directory `~/` manually or using the function `file.edit('~/.Renviron')`, then add the library path `R_LIBS_USER="path"` to .Renviron, for example, `R_LIBS_USER="~/Rpackages"`.
+
+---
+class: middle center
+
+# Write
+
+---
+
+## Create a Bookdown Book Project Folder
+
+- Bookdown can be used to create books in pdf, html, epub and other format.
+
+- To create a new bookdown project (folder) you may go to `File-&gt;New Project-&gt;New Directory` and choose `Book project using bookdown`. Or you can download an example book from [github.com](https://github.com/rstudio/bookdown) or other places.
+
+.center[
+  ![:resize Popup new project windows, auto, 20%](Figs/new-book-project.png)
+]
+
+---
+
+## Modify the YAML files `_output.yml` and `_output.yml`
+
+- YAML is a data-serialization language which is normally used to store configuration information.
+- `_output.yml` mainly controls the output styles.
+- `_bookdown.yml` mainly defines what files to process and their order.
+
+.pull-left[
+  .center[
+&lt;iframe src="Examples/_output.yml" width="540" height="320"&gt;&lt;/iframe&gt;
+<a href="data:text/yaml;base64,Ym9va2Rvd246OmdpdGJvb2s6DQogIGNzczogc3R5bGUuY3NzDQogIGNvbmZpZzoNCiAgICB0b2M6DQogICAgICBiZWZvcmU6IHwNCiAgICAgICAgPGxpPjxhIGhyZWY9Ii4vIj5Ib3cgdG8gY3JlYXRlIGFuZCBwdWJsaXNoIGEgYm9vayBvbmxpbmU8L2E+PC9saT4NCiAgICAgIGFmdGVyOiB8DQogICAgICAgIDxsaT48YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vcnN0dWRpby9ib29rZG93biIgdGFyZ2V0PSJibGFuayI+UHVibGlzaGVkIHdpdGggYm9va2Rvd248L2E+PC9saT4NCiAgICBkb3dubG9hZDogWyJwZGYiLCAiZXB1YiJdDQpib29rZG93bjo6cGRmX2Jvb2s6DQogIGluY2x1ZGVzOg0KICAgIGluX2hlYWRlcjogcHJlYW1ibGUudGV4DQogIGxhdGV4X2VuZ2luZTogeGVsYXRleA0KICBjaXRhdGlvbl9wYWNrYWdlOiBuYXRiaWINCiAga2VlcF90ZXg6IHllcw0KYm9va2Rvd246OmVwdWJfYm9vazogZGVmYXVsdA0KDQo=" download="_output.yml">Download _output.yml</a>
+]
+]
+
+.pull-right[
+  .center[
+  &lt;iframe src="Examples/_bookdown.yml" width="540" height="320"&gt;&lt;/iframe&gt;
+  <a href="data:text/yaml;base64,Ym9va19maWxlbmFtZTogImJvb2tkb3duLWRlbW8iDQpjaGFwdGVyX25hbWU6ICJUb3BpYyAiDQojIHJlcG86IGh0dHBzOi8vZ2l0aHViLmNvbS91c2VybmFtZS9wcm9qZWN0bmFtZQ0Kb3V0cHV0X2RpcjogZG9jcw0KIyBybWRfZmlsZXM6IFsiaW5kZXguUm1kIiwgIjAxLWludHJvLlJtZCIsICIwMi1pbnN0YWxsYXRpb25zLlJtZCJdDQpjbGVhbjogW2Jvb2suYmJsXQ0KZGVsZXRlX21lcmdlZF9maWxlOiB0cnVlDQo=" download="_bookdown.yml">Download _bookdown.yml</a>
+]
+]
+
+---
+
+## Writing the Book via R Markdown
+
+- `Markdown` is a free markup language with simple formatting syntax. `R markdown` extends `markdown` with the support of the `R` programing language.
+
+- Some features of Markdown
+
+  - Headers can be declared using `#` in markdown.
+
+  - For *italics text*, wrap the text with one star `*` or underscore `_` on each side: `*one star on each side*`.
+  - For **bold text**, wrap the text with two stars `**` or underscores `__` on each side: `**two stars on each side**`.
+  - Use the syntax `[Link Name](url)` to create a hyperlink.
+  - Use the syntax `![Caption](path_to_image)` to add an image.
+
+- For more features, see Section [2.5 Markdown syntax](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html) in the book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
+
+---
+class: middle center
+
+# Build
+
+---
+
+## Build the Book
+
+- Open the file with `.Rproj` as its file type in your bookdown project folder in `Rtudio`.
+  - Option 1: In RStudio, the `Build` menu, click `build all` (or `Install and Restart` if not initial build.).
+  - Option 2: In the upper right panel, click `Build Book` or choose an output format to build. The output formats are defined in the YAML file `_output.yml`
+  - Option 3: If an .Rmk file was open, you will see the `Knit` button on the top of upper left panel which can be used build an individual chapter.
+  
+.center[
+![:resize Buttons that can be clicked to build a bookdown book., 95%, auto](Figs/Rstudio-Build-a-book.png)
+]
+
+---
+class: middle center
+
+# Publish
+
+---
+
+## `Git` and `GitHub`
+
+- What is it?
+  - `Git` is an Open Source Distributed Version Control System.
+  - `GitHub` is a code hosting platform for version control and collaboration.
+
+- Setup
+
+  - Create a free account on [GitHub.com](https://github.com/).
+
+  - [Download and Install `git`](https://git-scm.com/downloads) and then install it to you computer.
+
+  - Dowland and install [Github Desktop](https://desktop.github.com/) or other [git GUI Clients](https://git-scm.com/download/gui/windows).
+
+- Introductory articles on Git
+  - [git - the simple guide](https://rogerdudler.github.io/git-guide/)
+  - [An introduction to Git: what it is, and how to use it](https://www.freecodecamp.org/news/what-is-git-and-how-to-use-it-c341b049ae61/).
+
+---
+
+## Basic Usage of GitHub and The Client
+
+- You may create and manage your repositories on github.com or use the Github Desktop app. The following are frequently used actions: `init`, `commit`, `push`, `fetch`, and `clone`.
+
+  - `init` creates an new repository.
+  - `commit` updates changes to local computer.
+  - `push` sends updated local changes to the server.
+  - `fetch` downloads newer changes on server to local computer.
+  - `clone` download a repository from [Github](https://github.com/) to local computer.
+
+- Collaboration on github.com is easy.
+  
+  - `fork` saves a copy of a public repository to your own account.
+  - `pull request` lets you tell others about changes you pushed to a branch in a repository that you cloned on [Github](https://github.com/).
+
+.blue[**Tip:**] `pull request` can be useful for others to submit corrections to your book if you have a public repository for your book project on [Github](https://github.com/).
+
+---
+
+## Publish a Book via Github Pages or Netlify
+
+- To use Github Pages, first you need to create a GitHub repository named `username.github.io`. It can be an empty repository, it can also be a full personal website.
+
+- To publish your project site via GitHub Pages, log on to github.com and then change the `GitHub Pages Sources settings` for your reporitory. To let Github automatically publish the project site, the branch should be names as `gh-pages`, and the folder should be named as `docs`.
+.center[
+![:resize  , 40%, ](Figs/Github-Pages-Sources.png)
+]
+
+
+- More details can be found in [Configuring a publishing source for your GitHub Pages site](https://help.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+
+- For a free account, only public repositories can be published via Github pages. To publish a private repository, it is recommended to use [Netlify](www.netlify.com). Please read [the blogdown book section 3.1](https://bookdown.org/yihui/blogdown/netlify.html) for instructions.
+
+---
+class: middle center
+
+# .blue[Thank You!]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="Assets/js/resize.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_HTMLorMML-full';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
