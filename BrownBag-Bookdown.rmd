@@ -198,7 +198,7 @@ class: middle center
 .pull-left[
   .center[
 <iframe src="Examples/output.yml" width="540" height="320"></iframe>
-```{r _output.yml, echo=FALSE}
+```{r output-yml, echo=FALSE}
 xfun::embed_file("Examples/_output.yml")
 ```
 ]
@@ -207,7 +207,7 @@ xfun::embed_file("Examples/_output.yml")
 .pull-right[
   .center[
   <iframe src="Examples/bookdown.yml" width="540" height="320"></iframe>
-  ```{r _bookdown.yml, echo=FALSE}
+  ```{r bookdown-yml, echo=FALSE}
   xfun::embed_file("Examples/_bookdown.yml")
   ```
 ]
