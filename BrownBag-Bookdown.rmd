@@ -277,20 +277,27 @@ class: middle center
 
 ## Basic Usage of GitHub and The Client
 
-- You may create and manage your repositories on github.com or use the Github Desktop app. The following are frequently used actions: `init`, `commit`, `push`, `fetch`, and `clone`.
+- You may create and manage your repositories on github.com or use the Github Desktop app. The following are frequently used actions: `init`, `commit`, `push`, and `fetch`.
 
   - `init` creates an new repository.
   - `commit` updates changes to local computer.
   - `push` sends updated local changes to the server.
   - `fetch` downloads newer changes on server to local computer.
-  - `clone` download a repository from [Github](https://github.com/) to local computer.
 
-- Collaboration on github.com is easy.
-  
-  - `fork` saves a copy of a public repository to your own account.
-  - `pull request` lets you tell others about changes you pushed to a branch in a repository that you cloned on [Github](https://github.com/).
+  <!-- - `clone` download a repository from [Github](https://github.com/) to local computer. -->
 
-.blue[**Tip:**] `pull request` can be useful for others to submit corrections to your book if you have a public repository for your book project on [Github](https://github.com/).
+<!-- - Collaboration on github.com is easy. -->
+
+<!--   - `fork` saves a copy of a public repository to your own account. -->
+<!--   - `pull request` lets you tell others about changes you pushed to a branch in a repository that you cloned on [Github](https://github.com/). -->
+
+<!-- .blue[**Tip:**] `pull request` can be useful for others to submit corrections to your book if you have a public repository for your book project on [Github](https://github.com/). -->
+
+- Create an new repository within your bookdown project folder, then commit and push (publish in Github Desktop App) to github.com.
+.center[
+![:resize , 800px, 250px](Figs/Create-Repo-for-book.png)
+]
+
 
 ---
 
