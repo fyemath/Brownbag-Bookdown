@@ -1,0 +1,7 @@
+book_filename: "bookdown-demo"
+chapter_name: "Topic "
+# repo: https://github.com/username/projectname
+output_dir: docs
+# rmd_files: ["index.Rmd", "01-intro.Rmd", "02-installations.Rmd"]
+clean: [book.bbl]
+delete_merged_file: true
